@@ -52,7 +52,7 @@ class ProfessionalReferenceController extends Controller
             return response()->json($e, 500);
         }
     }
-
+    //vista nos mostrara categoria
     function show($id)
     {
         try {
@@ -70,7 +70,7 @@ class ProfessionalReferenceController extends Controller
             return response()->json($e, 500);
         }
     }
-
+    //bnos permite crear o agregar 
     function store(Request $request)
     {
         try {
