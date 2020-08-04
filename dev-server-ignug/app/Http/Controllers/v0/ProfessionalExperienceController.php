@@ -54,6 +54,7 @@ class ProfessionalExperienceController extends Controller
             return response()->json($e, 500);
         }
     }
+//Metodo de mirar los datos del sistema.
 
     function show($id)
     {
