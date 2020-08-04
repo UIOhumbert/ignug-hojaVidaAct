@@ -9,7 +9,9 @@ use App\ProfessionalExperience;
 
 class ProfessionalExperienceController extends Controller
 {
-    function getProfessionalExperiences(Request $request)
+    
+//Metodo para que muestre los registros
+    function index(Request $request)
     {
         try {
             $professional = Professional::where('id', $request->user_id)->first();
@@ -53,7 +55,7 @@ class ProfessionalExperienceController extends Controller
         }
     }
 
-    function showProfessionalExperience($id)
+    function show($id)
     {
         try {
             $professionalExperiences = ProfessionalExperience::findOrFail($id);
@@ -71,7 +73,9 @@ class ProfessionalExperienceController extends Controller
         }
     }
 
-    function createProfessionalExperience(Request $request)
+//Metodo de crear o agregar datos.
+
+    function store(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -105,7 +109,9 @@ class ProfessionalExperienceController extends Controller
         }
     }
 
-    function updateProfessionalExperience(Request $request)
+//Metodo para actualizar datos experiencia profesional
+
+    function update(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -133,7 +139,9 @@ class ProfessionalExperienceController extends Controller
         }
     }
 
-    function deleteProfessionalExperience(Request $request)
+// Metodo para eliminar datos del sistema.
+
+    function destroy(Request $request)
     {
         try {
             $professionalExperience = ProfessionalExperience::findOrFail($request->id)->delete();
