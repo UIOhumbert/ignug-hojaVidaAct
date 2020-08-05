@@ -90,34 +90,14 @@ Route::group(['prefix' => 'institutions'], function () {
 /**********************************************************************************************************************/
 /*Rutas para obtener los datos personales de la persona*/
 
-Route::group(['prefix' => 'dateperson'], function () {
+Route::group(['prefix' => 'professionals'], function () {
     Route::group(['middleware' => 'auth:api'], function (){
-        Route::get('/validate_cedula',  'UserController@validateCedula');
-        Route::get('/users',  'UserController@getAllUsers');
         
-        Route::get('/professionals/abilities',  'ProfessionalController@getAbilities');
-        Route::get('/professionals/academicFormations',  'ProfessionalController@getAcademicFormations');
-        Route::get('/professionals/courses',  'ProfessionalController@getCourses');
-        Route::get('/professionals/languages',  'ProfessionalController@getLanguages');
-        Route::get('/professionals/professionalExperiences',  'ProfessionalController@getProfessionalExperiences');
-        Route::get('/professionals/professionalReferences',  'ProfessionalController@getProfessionalReferences');
-
-        Route::get('/academicFormations',  'AcademicFormationController@getAcademicFormations');
-
-        Route::get('/languages',  'LanguageController@getLanguages');
-
-        Route::get('/abilities',  'AbilityController@getAbilities');
-
-        Route::get('/courses',  'CourseController@getCourses');
-
-        Route::get('/professionalExperiences',  'ProfessionalExperienceController@getProfessionalExperiences');
-
-
-        Route::get('/professionalReferences',  'ProfessionalReferenceController@getProfessionalReferences');
-
+        /**actualiza los datos del profesional */
+        Route::put('', ['uses' => 'ProfessionalController@update']);
+        
     }); 
 });
-
 /*************************************************************************************************************************/
 /* Rutas para los Formacion Academica*/
 Route::group(['middleware'=> 'auth:api'], function () {
