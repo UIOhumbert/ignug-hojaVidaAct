@@ -10,7 +10,7 @@ use App\Ability;
 class AbilityController extends Controller
 {
     //Trae las habilidades del profesional mediante el id
-    function get(Request $request)
+    function index(Request $request)
     {
         try {
             $professional = Professional::where('id', $request->user_id)->first();
@@ -142,7 +142,7 @@ class AbilityController extends Controller
     }
 //Elimina las Habilidades mal creadas
 
-    function delete(Request $request)
+    function destroy(Request $request)
     {
         try {
             $ability = Ability::findOrFail($request->id)->update([

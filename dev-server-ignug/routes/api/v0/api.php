@@ -113,7 +113,7 @@ Route::apiResource('languages', 'v0\LanguageController');
 
 /* Rutas para las fortalezas*/
 Route::group(['middleware'=> 'auth:api'], function () {
-    Route::apiResource('professionalExperience','v0\ProfessionalExperienceController');
+    Route::apiResource('abilities', 'v0\AbilityController');
     });
 /* Rutas para los cursos*/
 Route::group(['middleware'=> 'auth:api'], function () {
