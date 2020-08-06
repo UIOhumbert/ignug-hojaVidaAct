@@ -9,7 +9,8 @@ use App\Ability;
 
 class AbilityController extends Controller
 {
-    function getAbilities(Request $request)
+    //Trae las habilidades del profesional mediante el id
+    function get(Request $request)
     {
         try {
             $professional = Professional::where('id', $request->user_id)->first();
@@ -52,8 +53,8 @@ class AbilityController extends Controller
             return response()->json($e, 500);
         }
     }
-
-    function showAbility($id)
+// Muestra las paginas de error en caso de haberlo 
+    function show($id)
     {
         try {
             $ability = Ability::findOrFail($id);
@@ -70,7 +71,7 @@ class AbilityController extends Controller
             return response()->json($e, 500);
         }
     }
-
+//valida que no se dupliquen las habilidades.
     function validateDuplicate($dataAbility, $professional)
     {
         return Ability::where('category', $dataAbility['category'])
@@ -78,8 +79,8 @@ class AbilityController extends Controller
             ->where('state', '<>', 'DELETED')
             ->first();
     }
-
-    function createAbility(Request $request)
+//crea una nueva habilidad
+    function create(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -116,8 +117,8 @@ class AbilityController extends Controller
             return response()->json($e, 500);
         }
     }
-
-    function updateAbility(Request $request)
+//actualiza las Habilidades mal creadas
+    function update(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -139,8 +140,9 @@ class AbilityController extends Controller
             return response()->json($e, 500);
         }
     }
+//Elimina las Habilidades mal creadas
 
-    function deleteAbility(Request $request)
+    function delete(Request $request)
     {
         try {
             $ability = Ability::findOrFail($request->id)->update([
