@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Controllers\Controller;
+use App\Models\JobBoard\ProfessionalReference;
+use App\Models\JobBoard\Professional;
+use App\Models\Ignug\State;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use App\Professional;
-use App\ProfessionalReference;
 
 class ProfessionalReferenceController extends Controller
 {

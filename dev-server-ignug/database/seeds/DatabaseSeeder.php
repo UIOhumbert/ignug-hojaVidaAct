@@ -519,10 +519,13 @@ class DatabaseSeeder extends Seeder
             'state_id' => 1,
         ]);
 
-
         factory(Course::class, 100)->create();
 
         // factory(App\ProfessionalExperience::class, 100)->create();
+
+       factory(Course::class, 100)->create();
+       factory(ProfessionalReference::class, 100)->create();
+       factory(AcademicFormation::class, 100)->create();
 
     }
 }

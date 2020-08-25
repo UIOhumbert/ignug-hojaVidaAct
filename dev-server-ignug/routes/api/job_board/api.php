@@ -119,9 +119,9 @@ Route::group(['prefix' => 'dateperson'], function () {
 });
 
 /*************************************************************************************************************************/
-/* Rutas para los Formacion Academica*/
+/* Rutas para los Formación Académica*/
 Route::group(['middleware'=> 'auth:api'], function () {
-Route::apiResource('academicFormations', 'v0\AcademicFormationController');
+Route::apiResource('academicFormations', 'JobBoard\AcademicFormationController');
 });
 /**********************************************************************************************************************/
 
@@ -143,7 +143,7 @@ Route::apiResource('courses', 'JobBoard\CourseController');
 
 /* Rutas para las experiencias pofesionales*/
 Route::group(['middleware'=> 'auth:api'], function () {
-Route::apiResource('professionalExperiences', 'v0\ProfessionalExperienceController');
+Route::apiResource('professionalExperiences', 'JobBoard\ProfessionalExperienceController');
 });
 /**********************************************************************************************************************/
 
