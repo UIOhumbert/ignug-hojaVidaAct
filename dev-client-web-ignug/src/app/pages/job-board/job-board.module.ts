@@ -51,6 +51,7 @@ import {AppHojaVidaComponent} from './hoja-vida/app.hoja-vida.component';
 import { AppEmpresaComponentComponent } from './app-empresa-component/app-empresa-component.component';
 import { AppEmpresaDosComponent } from './app-empresa-dos/app-empresa-dos.component';
 import { AppCourseComponent } from './app-course/app-course.component';
+import { AppProfessionalExperienceComponent } from './app-professional-experience/app-professional-experience.component';
 
 @NgModule({
     imports: [
@@ -101,7 +102,8 @@ import { AppCourseComponent } from './app-course/app-course.component';
         AppHojaVidaComponent,
         AppEmpresaComponentComponent,
         AppEmpresaDosComponent,
-        AppCourseComponent
+        AppCourseComponent,
+        AppProfessionalExperienceComponent
     ],
     providers: [DialogService]
 })
