@@ -522,6 +522,7 @@ class DatabaseSeeder extends Seeder
 
        factory(Course::class, 100)->create();
        factory(ProfessionalReference::class, 100)->create();
+       factory(AcademicFormation::class, 100)->create();
 
     }
 }
