@@ -523,6 +523,7 @@ class DatabaseSeeder extends Seeder
         ]);
 */
 
+
         factory(State::class, 10)->create();
         factory(Catalogue::class, 10)->create();
         factory(Category::class, 10)->create();
@@ -543,5 +544,15 @@ class DatabaseSeeder extends Seeder
         //factory(Course::class, 10)->create();
         //factory(ProfessionalExperience::class, 10)->create();
         //factory(ProfessionalReference::class, 10)->create();
+
+        factory(Course::class, 100)->create();
+
+        // factory(App\ProfessionalExperience::class, 100)->create();
+
+       factory(Course::class, 100)->create();
+       factory(ProfessionalReference::class, 100)->create();
+       factory(AcademicFormation::class, 100)->create();
+
+
     }
 }
