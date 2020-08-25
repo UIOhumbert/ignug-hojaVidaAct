@@ -1,5 +1,5 @@
 <?php
-
+//gtgtgth
 namespace App\Models\Ignug;
 
 use Illuminate\Database\Eloquent\Model;
