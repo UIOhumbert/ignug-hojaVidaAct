@@ -143,7 +143,7 @@ Route::apiResource('courses', 'JobBoard\CourseController');
 
 /* Rutas para las experiencias pofesionales*/
 Route::group(['middleware'=> 'auth:api'], function () {
-Route::apiResource('professionalExperiences', 'v0\ProfessionalExperienceController');
+Route::apiResource('professionalExperiences', 'JobBoard\ProfessionalExperienceController');
 });
 /**********************************************************************************************************************/
 
