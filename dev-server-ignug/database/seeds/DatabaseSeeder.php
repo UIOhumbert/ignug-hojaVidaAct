@@ -520,6 +520,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-       factory(Course::class, 100)->create();
+        factory(Course::class, 100)->create();
+
+        // factory(App\ProfessionalExperience::class, 100)->create();
+
     }
 }

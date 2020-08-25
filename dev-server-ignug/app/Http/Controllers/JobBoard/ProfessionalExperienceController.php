@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Professional;
-use App\ProfessionalExperience;
+use App\Models\JobBoard\Professional;
+use App\Models\JobBoard\ProfessionalExperience;
+
 
 class ProfessionalExperienceController extends Controller
 {
-    function getProfessionalExperiences(Request $request)
+// Muestra los datos del profesional con experiencia//
+    function index (Request $request)
     {
         try {
             $professional = Professional::where('id', $request->user_id)->first();
@@ -53,7 +55,7 @@ class ProfessionalExperienceController extends Controller
         }
     }
 
-    function showProfessionalExperience($id)
+    function show($id)
     {
         try {
             $professionalExperiences = ProfessionalExperience::findOrFail($id);
@@ -70,8 +72,9 @@ class ProfessionalExperienceController extends Controller
             return response()->json($e, 500);
         }
     }
+//Almacena los  Datos creado del profesional que envia//
 
-    function createProfessionalExperience(Request $request)
+    function store(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -104,8 +107,8 @@ class ProfessionalExperienceController extends Controller
             return response()->json($e, 500);
         }
     }
-
-    function updateProfessionalExperience(Request $request)
+//Actualiza los datos del profesional
+    function update(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -132,8 +135,8 @@ class ProfessionalExperienceController extends Controller
             return response()->json($e, 500);
         }
     }
-
-    function deleteProfessionalExperience(Request $request)
+//Elimina los datos del profesional
+    function destroy(Request $request)
     {
         try {
             $professionalExperience = ProfessionalExperience::findOrFail($request->id)->delete();
