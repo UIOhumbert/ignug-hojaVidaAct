@@ -54,6 +54,7 @@ import { AppCourseComponent } from './app-course/app-course.component';
 import { AppProfessionalExperienceComponent } from './app-professional-experience/app-professional-experience.component';
 import { AppAcademicFormationComponent } from './app-academic-formation/app-academic-formation.component';
 import { AppProfessionalReferencesComponent } from './app-professional-references/app-professional-references.component';
+import { AppProfessionalComponent } from './app-professional/app-professional.component';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { AppProfessionalReferencesComponent } from './app-professional-reference
         AppCourseComponent,
         AppProfessionalExperienceComponent,
         AppAcademicFormationComponent,
-        AppProfessionalReferencesComponent
+        AppProfessionalReferencesComponent,
+        AppProfessionalComponent
     ],
     providers: [DialogService]
 })

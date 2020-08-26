@@ -8,6 +8,7 @@ import { AppCourseComponent } from './app-course/app-course.component';
 import { AppProfessionalExperienceComponent } from './app-professional-experience/app-professional-experience.component';
 import { AppAcademicFormationComponent } from './app-academic-formation/app-academic-formation.component';
 import { AppProfessionalReferencesComponent } from './app-professional-references/app-professional-references.component';
+import { AppProfessionalComponent } from './app-professional/app-professional.component';
 
 export const JobBoardRoutes: Routes = [
     {
@@ -38,14 +39,21 @@ export const JobBoardRoutes: Routes = [
                 component: AppProfessionalExperienceComponent,
                 // canActivate: [AuthGuard]
             },
+            
             {
                 path: 'AcademicFormation',
                 component: AppAcademicFormationComponent,
                 // canActivate: [AuthGuard]
             },
+        
             {
                 path: 'ProfessionalReferences',
                 component: AppProfessionalReferencesComponent,
+                // canActivate: [AuthGuard]
+            },
+            {
+                path: 'Professional',
+                component: AppProfessionalComponent,
                 // canActivate: [AuthGuard]
             },
         ]
