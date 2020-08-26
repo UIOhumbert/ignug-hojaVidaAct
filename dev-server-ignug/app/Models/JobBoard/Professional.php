@@ -6,24 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Professional extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $connection = 'pgsql-job-board';
     protected $fillable = [
-        'identity',
-        'first_name',
-        'last_name',
-        'email',
-        'nationality',
-        'civil_state',
-        'birthdate',
-        'gender',
-        'phone',
-        'address',
         'about_me',
-        'state',
     ];
 
     public function offers()

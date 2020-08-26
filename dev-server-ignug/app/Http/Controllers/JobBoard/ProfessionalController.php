@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\JobBoard;
 
-use App\Ability;
-use App\AcademicFormation;
-use App\Company;
-use App\Course;
-use App\Language;
-use App\Offer;
-use App\Professional;
-use App\ProfessionalExperience;
-use App\ProfessionalReference;
+
+use App\Models\JobBoard\Ability;
+use App\Models\JobBoard\AcademicFormation;
+use App\Models\JobBoard\Company;
+use App\Models\JobBoard\Course;
+use App\Models\JobBoard\Language;
+use App\Models\JobBoard\Offer;
+use App\Models\JobBoard\Professional;
+use App\Models\JobBoard\ProfessionalExperience;
+use App\Models\JobBoard\ProfessionalReference;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Http\Controllers\Controller;
 
 class ProfessionalController extends Controller
 {
@@ -527,7 +529,7 @@ class ProfessionalController extends Controller
 
     }
 
-    function showProfessional($id)
+    function show($id)
     {
         try {
             $professional = Professional::where('user_id', $id)->with('academicFormations')->first();
@@ -544,8 +546,8 @@ class ProfessionalController extends Controller
             return response()->json($e, 500);
         }
     }
-
-    function updateProfessional(Request $request)
+    /*Actualiza datos del professional*/
+    function update(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -581,8 +583,8 @@ class ProfessionalController extends Controller
             return response()->json($e, 500);
         }
     }
-
-    function deleteProfessional(Request $request)
+    /*metodo para eliminar un profesional*/
+    function destroy(Request $request)
     {
         try {
             $professional = Professional::findOrFail($request->id)->delete();
