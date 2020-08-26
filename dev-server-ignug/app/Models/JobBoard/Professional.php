@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Professional extends Model
 {
+    use \OwenIt\Auditing\Auditable;
+    
     protected $connection = 'pgsql-job-board';
     protected $fillable = [
         'about_me',
