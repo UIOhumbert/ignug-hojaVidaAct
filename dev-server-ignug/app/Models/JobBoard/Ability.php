@@ -21,7 +21,7 @@ class Ability extends Model
 
     public function profsesional()
     {
-        return $this->belongsTo('App\Professional');
+        return $this->belongsTo(Professional::class);
     }
 
 }

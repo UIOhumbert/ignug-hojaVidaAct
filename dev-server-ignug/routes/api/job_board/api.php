@@ -102,20 +102,20 @@ Route::group(['prefix' => 'professionals'], function () {
 
 /*************************************************************************************************************************/
 /* Rutas para los Formación Académica*/
-Route::group(['middleware'=> 'auth:api'], function () {
+//Route::group(['middleware'=> 'auth:api'], function () {
 Route::apiResource('academicFormations', 'JobBoard\AcademicFormationController');
-});
+//});
 /**********************************************************************************************************************/
 
 /* Rutas para los idiomas*/
-Route::group(['middleware'=> 'auth:api'], function () {
+//Route::group(['middleware'=> 'auth:api'], function () {
 Route::apiResource('languages', 'JobBoard\LanguageController');
-});
+//});
 /**********************************************************************************************************************/
 
 /* Rutas para las fortalezas*/
 //Route::group(['middleware'=> 'auth:api'], function () {
-    Route::apiResource('professionalExperience','v0\ProfessionalExperienceController');
+    Route::apiResource('professionalExperience','   JobBoard\ProfessionalExperienceController');
     //});
 /* Rutas para los cursos  el Middleware es para filtar peticiones*/
 //Route::group(['middleware'=> 'auth:api'], function () {
@@ -124,15 +124,15 @@ Route::apiResource('courses', 'JobBoard\CourseController');
 /**********************************************************************************************************************/
 
 /* Rutas para las experiencias pofesionales*/
-Route::group(['middleware'=> 'auth:api'], function () {
+//Route::group(['middleware'=> 'auth:api'], function () {
 Route::apiResource('professionalExperiences', 'JobBoard\ProfessionalExperienceController');
-});
+//});
 /**********************************************************************************************************************/
 
 /* Rutas para las referencias pofesionales*/
-Route::group(['middleware'=> 'auth:api'], function () {
+//Route::group(['middleware'=> 'auth:api'], function () {
 Route::apiResource('professionalReferences', 'JobBoard\ProfessionalReferenceController');
-});
+//});
 /**********************************************************************************************************************/
 
 
