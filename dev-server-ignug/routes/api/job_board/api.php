@@ -114,9 +114,9 @@ Route::apiResource('languages', 'JobBoard\LanguageController');
 /**********************************************************************************************************************/
 
 /* Rutas para las fortalezas*/
-Route::group(['middleware'=> 'auth:api'], function () {
+//Route::group(['middleware'=> 'auth:api'], function () {
     Route::apiResource('professionalExperience','v0\ProfessionalExperienceController');
-    });
+    //});
 /* Rutas para los cursos  el Middleware es para filtar peticiones*/
 //Route::group(['middleware'=> 'auth:api'], function () {
 Route::apiResource('courses', 'JobBoard\CourseController');
