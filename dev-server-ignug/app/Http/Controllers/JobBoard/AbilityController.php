@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\JobBoard;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ use App\Ability;
 
 class AbilityController extends Controller
 {
-    function getAbilities(Request $request)
+    function index(Request $request)
     {
         try {
             $professional = Professional::where('id', $request->user_id)->first();
@@ -53,7 +53,7 @@ class AbilityController extends Controller
         }
     }
 
-    function showAbility($id)
+    function show($id)
     {
         try {
             $ability = Ability::findOrFail($id);
@@ -79,7 +79,7 @@ class AbilityController extends Controller
             ->first();
     }
 
-    function createAbility(Request $request)
+    function store(Request $request)
     {
         try {
             $data = $request->json()->all();
@@ -140,7 +140,7 @@ class AbilityController extends Controller
         }
     }
 
-    function deleteAbility(Request $request)
+    function destroy(Request $request)
     {
         try {
             $ability = Ability::findOrFail($request->id)->update([
