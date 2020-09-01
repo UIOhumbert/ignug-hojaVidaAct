@@ -5,16 +5,22 @@ import {Professional} from './models.index';
 ////
 export class Course {
     id: number;
-    catalogue: Catalogue;
-    state: State;
-    attendance2: Attendance2;
     professional: Professional;
+    event_type: Catalogue;
+    institution: Catalogue;
     event_name: string;
     start_date: Date;
     finish_date: Date;
     hours: string;
+    type_certification: Catalogue;
+    catalogue: Catalogue;
+    state: State;
+    attendance2: Attendance2;
     constructor() {
-        //this.date = new Date();
-
+        this.professional = new Professional();
+        this.event_type = new Catalogue();
+        this.institution = new Catalogue();
+        this.type_certification = new Catalogue();
+        this.state = new State();
     }
 }

@@ -9,7 +9,6 @@ export class AppAcademicFormationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
 }

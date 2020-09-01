@@ -1,0 +1,390 @@
+<p-dialog [header]="headerDialogUser" [(visible)]="displayUser" modal="true" showEffect="fade">
+    <!--    <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">-->
+    <form [formGroup]="userForm">
+        <!--IdentificationType y Identification-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="identificationType">Tipo de Documento</label>
+                <p-dropdown id="identificationType" [options]="identificationTypes"
+                            formControlName="identification_type_id"></p-dropdown>
+                <p-message severity="error" text="Tipo de documento es requerido"
+                           *ngIf="!userForm.controls['identification_type_id'].valid&&userForm.controls['identification_type_id'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="identification">Número de Documento</label>
+                <input id="identification" type="text" pInputText pKeyFilter="pnum" maxlength="10"
+                       formControlName="identification">
+                <p-message severity="error"
+                           [text]="userForm.controls['identification'].errors['required'] ? 'Identificación es requerido'
+                           : userForm.controls['identification'].errors['minlength'] ? 'Debe ingresar mínimo 10 dígitos'
+                           : ''"
+                           *ngIf="!userForm.controls['identification'].valid&&userForm.controls['identification'].dirty"></p-message>
+            </div>
+        </div>
+        <!--Firstname y FirstLastName-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="firstName">Nombre</label>
+                <input id="firstName" type="text" size="30" pInputText pKeyFilter="alpha" maxlength="30"
+                       formControlName="first_name">
+                <p-message severity="error" text="El nombre es requerido"
+                           *ngIf="!userForm.controls['first_name'].valid&&userForm.controls['first_name'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="firstLastName">Apellido</label>
+                <input id="firstLastName" type="text" size="30" pInputText pKeyFilter="alpha" maxlength="30"
+                       formControlName="first_lastname">
+                <p-message severity="error" text="El apellido es requerido"
+                           *ngIf="!userForm.controls['first_lastname'].valid&&userForm.controls['first_lastname'].dirty"></p-message>
+            </div>
+
+        </div>
+
+        <!--Email y Birthdate-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="email">Correo Institucional</label>
+                <input id="email" type="text" size="30" pInputText pKeyFilter="email"
+                       formControlName="email">
+                <p-message severity="error" [text]="userForm.controls['email'].errors['required'] ? 'Correo es requerido'
+                           : userForm.controls['email'].errors['email'] ? 'Debe ingresar un correo válido'
+                           : ''"
+                           *ngIf="!userForm.controls['email'].valid&&userForm.controls['email'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="birthdate">Fecha de Nacimiento</label>
+                <p-calendar id="birthdate" formControlName="birthdate" [monthNavigator]="true"
+                            [showIcon]="true" [yearNavigator]="true" [yearRange]="validationBirthdate"
+                            dateFormat="yy-mm-dd" placeholder="yyyy-mm-dd"></p-calendar>
+                <p-message severity="error" text="La fecha de nacimiento es requerido"
+                           *ngIf="!userForm.controls['birthdate'].valid&&userForm.controls['birthdate'].dirty"></p-message>
+            </div>
+        </div>
+
+        <!--Sex y Gender-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="sex">Sexo</label>
+                <p-dropdown id="sex" [options]="sexs"
+                            formControlName="sex_id"></p-dropdown>
+                <p-message severity="error" text="El tipo de sexo es requerido"
+                           *ngIf="!userForm.controls['sex_id'].valid&&userForm.controls['sex_id'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="gender">Género</label>
+                <p-dropdown id="gender" [options]="genders"
+                            formControlName="gender_id"></p-dropdown>
+                <p-message severity="error" text="El género es requerido"
+                           *ngIf="!userForm.controls['gender_id'].valid&&userForm.controls['gender_id'].dirty"></p-message>
+            </div>
+        </div>
+
+        <!--EthnicOrigin y Location-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="ethnic_origin">Etnia</label>
+                <p-dropdown id="ethnic_origin" [options]="ethnicOrigins"
+                            formControlName="ethnic_origin_id"></p-dropdown>
+                <p-message severity="error" text="La etnia es requerido"
+                           *ngIf="!userForm.controls['ethnic_origin_id'].valid&&userForm.controls['ethnic_origin_id'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="location">Ubicación</label>
+                <p-dropdown id="location" [options]="cantones" formControlName="location_id" filter="true">
+                    <ng-template let-canton pTemplate="selectedItem">
+                        <span style="vertical-align:middle; margin-left: .5em">{{canton.label}}</span>
+                    </ng-template>
+                    <ng-template let-canton pTemplate="item">
+                        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                            <div style="font-size:14px;float:right;margin-top:4px">{{canton.label}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message severity="error" text="La ubicación es requerido"
+                           *ngIf="!userForm.controls['location_id'].valid&&userForm.controls['location_id'].dirty"></p-message>
+            </div>
+        </div>
+
+        <!--Botones-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <button type="submit" pButton icon="pi pi-refresh" class="ui-button-primary"
+                        [title]="!userForm.valid?'Debe llenar todos los campos':''"
+                        (click)="updateUser()" *ngIf="selectedUser.id!=null" [disabled]="!userForm.valid"
+                        label="Actualizar"></button>
+                <button type="button" pButton icon="pi pi-save" class="ui-button-success"
+                        [title]="!userForm.valid?'Debe llenar todos los campos':''"
+                        (click)="createUser()" *ngIf="selectedUser.id==null" [disabled]="!userForm.valid"
+                        label="Crear"></button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+<p-confirmDialog [style]="{width: '425px'}">
+</p-confirmDialog>
+<p-toast key="tst"></p-toast>
+<div class="p-grid ui-fluid">
+    <div class="p-lg-12 p-md-12 p-sm-12">
+        <p-message severity="info" text="No hay registros" *ngIf="users.length==0"></p-message>
+        <p-table #dt [columns]="colsUser" styleClass="ui-table-cars" [value]="users"
+                 [paginator]="true"
+                 [rows]="5"
+                 [responsive]="true"
+                 dataKey="id"
+                 *ngIf="users.length>0">
+            <ng-template pTemplate="caption">
+                <div class="p-grid">
+                    <div class="p-lg-12 p-md-12 p-sm-12">
+                        <h1>Usuarios</h1>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns"
+                        [pSortableColumn]="col.field"
+                        [ngSwitch]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                    <th style="width: 8em; text-align: center;">
+                        <button pButton type="button" icon="pi pi-user-plus"
+                                class="ui-button-success"
+                                (click)="selectUser(null)"></button>
+                    </th>
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field" style="padding: .5em;">
+                        <input *ngSwitchCase="'identification'" pInputText type="text"
+                               placeholder="Buscar por número de identificación"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'first_lastname'" pInputText type="text"
+                               placeholder="Buscar por el primer apellido"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'first_name'" pInputText type="text"
+                               placeholder="Buscar por el primer nombre"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'email'" pInputText type="text"
+                               placeholder="Buscar por correo"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                    <th style="width: 8em;">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+                <tr>
+                    <td>{{rowData.identification}}</td>
+                    <td>{{rowData.first_name}}</td>
+             <p-dialog [header]="headerDialogUser" [(visible)]="displayUser" modal="true" showEffect="fade">
+    <!--    <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">-->
+    <form [formGroup]="userForm">
+        <!--IdentificationType y Identification-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="identificationType">Tipo de Documento</label>
+                <p-dropdown id="identificationType" [options]="identificationTypes"
+                            formControlName="identification_type_id"></p-dropdown>
+                <p-message severity="error" text="Tipo de documento es requerido"
+                           *ngIf="!userForm.controls['identification_type_id'].valid&&userForm.controls['identification_type_id'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="identification">Número de Documento</label>
+                <input id="identification" type="text" pInputText pKeyFilter="pnum" maxlength="10"
+                       formControlName="identification">
+                <p-message severity="error"
+                           [text]="userForm.controls['identification'].errors['required'] ? 'Identificación es requerido'
+                           : userForm.controls['identification'].errors['minlength'] ? 'Debe ingresar mínimo 10 dígitos'
+                           : ''"
+                           *ngIf="!userForm.controls['identification'].valid&&userForm.controls['identification'].dirty"></p-message>
+            </div>
+        </div>
+        <!--Firstname y FirstLastName-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="firstName">Nombre</label>
+                <input id="firstName" type="text" size="30" pInputText pKeyFilter="alpha" maxlength="30"
+                       formControlName="first_name">
+                <p-message severity="error" text="El nombre es requerido"
+                           *ngIf="!userForm.controls['first_name'].valid&&userForm.controls['first_name'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="firstLastName">Apellido</label>
+                <input id="firstLastName" type="text" size="30" pInputText pKeyFilter="alpha" maxlength="30"
+                       formControlName="first_lastname">
+                <p-message severity="error" text="El apellido es requerido"
+                           *ngIf="!userForm.controls['first_lastname'].valid&&userForm.controls['first_lastname'].dirty"></p-message>
+            </div>
+
+        </div>
+
+        <!--Email y Birthdate-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="email">Correo Institucional</label>
+                <input id="email" type="text" size="30" pInputText pKeyFilter="email"
+                       formControlName="email">
+                <p-message severity="error" [text]="userForm.controls['email'].errors['required'] ? 'Correo es requerido'
+                           : userForm.controls['email'].errors['email'] ? 'Debe ingresar un correo válido'
+                           : ''"
+                           *ngIf="!userForm.controls['email'].valid&&userForm.controls['email'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="birthdate">Fecha de Nacimiento</label>
+                <p-calendar id="birthdate" formControlName="birthdate" [monthNavigator]="true"
+                            [showIcon]="true" [yearNavigator]="true" [yearRange]="validationBirthdate"
+                            dateFormat="yy-mm-dd" placeholder="yyyy-mm-dd"></p-calendar>
+                <p-message severity="error" text="La fecha de nacimiento es requerido"
+                           *ngIf="!userForm.controls['birthdate'].valid&&userForm.controls['birthdate'].dirty"></p-message>
+            </div>
+        </div>
+
+        <!--Sex y Gender-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="sex">Sexo</label>
+                <p-dropdown id="sex" [options]="sexs"
+                            formControlName="sex_id"></p-dropdown>
+                <p-message severity="error" text="El tipo de sexo es requerido"
+                           *ngIf="!userForm.controls['sex_id'].valid&&userForm.controls['sex_id'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="gender">Género</label>
+                <p-dropdown id="gender" [options]="genders"
+                            formControlName="gender_id"></p-dropdown>
+                <p-message severity="error" text="El género es requerido"
+                           *ngIf="!userForm.controls['gender_id'].valid&&userForm.controls['gender_id'].dirty"></p-message>
+            </div>
+        </div>
+
+        <!--EthnicOrigin y Location-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="ethnic_origin">Etnia</label>
+                <p-dropdown id="ethnic_origin" [options]="ethnicOrigins"
+                            formControlName="ethnic_origin_id"></p-dropdown>
+                <p-message severity="error" text="La etnia es requerido"
+                           *ngIf="!userForm.controls['ethnic_origin_id'].valid&&userForm.controls['ethnic_origin_id'].dirty"></p-message>
+            </div>
+            <div class="p-field p-col">
+                <label for="location">Ubicación</label>
+                <p-dropdown id="location" [options]="cantones" formControlName="location_id" filter="true">
+                    <ng-template let-canton pTemplate="selectedItem">
+                        <span style="vertical-align:middle; margin-left: .5em">{{canton.label}}</span>
+                    </ng-template>
+                    <ng-template let-canton pTemplate="item">
+                        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                            <div style="font-size:14px;float:right;margin-top:4px">{{canton.label}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message severity="error" text="La ubicación es requerido"
+                           *ngIf="!userForm.controls['location_id'].valid&&userForm.controls['location_id'].dirty"></p-message>
+            </div>
+        </div>
+
+        <!--Botones-->
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <button type="submit" pButton icon="pi pi-refresh" class="ui-button-primary"
+                        [title]="!userForm.valid?'Debe llenar todos los campos':''"
+                        (click)="updateUser()" *ngIf="selectedUser.id!=null" [disabled]="!userForm.valid"
+                        label="Actualizar"></button>
+                <button type="button" pButton icon="pi pi-save" class="ui-button-success"
+                        [title]="!userForm.valid?'Debe llenar todos los campos':''"
+                        (click)="createUser()" *ngIf="selectedUser.id==null" [disabled]="!userForm.valid"
+                        label="Crear"></button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+<p-confirmDialog [style]="{width: '425px'}">
+</p-confirmDialog>
+<p-toast key="tst"></p-toast>
+<div class="p-grid ui-fluid">
+    <div class="p-lg-12 p-md-12 p-sm-12">
+        <p-message severity="info" text="No hay registros" *ngIf="users.length==0"></p-message>
+        <p-table #dt [columns]="colsUser" styleClass="ui-table-cars" [value]="users"
+                 [paginator]="true"
+                 [rows]="5"
+                 [responsive]="true"
+                 dataKey="id"
+                 *ngIf="users.length>0">
+            <ng-template pTemplate="caption">
+                <div class="p-grid">
+                    <div class="p-lg-12 p-md-12 p-sm-12">
+                        <h1>Usuarios</h1>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns"
+                        [pSortableColumn]="col.field"
+                        [ngSwitch]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                    <th style="width: 8em; text-align: center;">
+                        <button pButton type="button" icon="pi pi-user-plus"
+                                class="ui-button-success"
+                                (click)="selectUser(null)"></button>
+                    </th>
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field" style="padding: .5em;">
+                        <input *ngSwitchCase="'identification'" pInputText type="text"
+                               placeholder="Buscar por número de identificación"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'first_lastname'" pInputText type="text"
+                               placeholder="Buscar por el primer apellido"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'first_name'" pInputText type="text"
+                               placeholder="Buscar por el primer nombre"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'email'" pInputText type="text"
+                               placeholder="Buscar por correo"
+                               class="ui-column-filter" style="width: 100%; margin-top: 0;"
+                               (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                    <th style="width: 8em;">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+                <tr>
+                    <td>{{rowData.identification}}</td>
+                    <td>{{rowData.first_name}}</td>
+                    <td>{{rowData.first_lastname}} {{rowData.second_lastname}} {{rowData.first_name}} {{rowData.second_name}}</td>
+                    <td><p>{{rowData.email}}</p></td>
+                    <td>
+                        <button pButton type="button" class="ui-button-primary" icon="pi pi-search"
+                                style="margin-right: .5em" (click)="selectUser(rowData);"></button>
+                        <button pButton type="button" class="ui-button-danger" (click)="deleteUser(rowData)"
+                                icon="pi pi-trash"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+      <td>{{rowData.first_lastname}} {{rowData.second_lastname}} {{rowData.first_name}} {{rowData.second_name}}</td>
+                    <td><p>{{rowData.email}}</p></td>
+                    <td>
+                        <button pButton type="button" class="ui-button-primary" icon="pi pi-search"
+                                style="margin-right: .5em" (click)="selectUser(rowData);"></button>
+                        <button pButton type="button" class="ui-button-danger" (click)="deleteUser(rowData)"
+                                icon="pi pi-trash"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

@@ -2,9 +2,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {JobBoardRoutes} from './job-board.routing';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HojaVidaRoutes} from './hoja-vida.routing';
+import {KeyFilterModule} from 'primeng/keyfilter';
 // Modulos Externos
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {MultiSelectModule} from 'primeng/multiselect';
@@ -39,29 +39,23 @@ import {PickListModule} from 'primeng/picklist';
 import {OrderListModule} from 'primeng/orderlist';
 import {CarouselModule} from 'primeng/carousel';
 import {FullCalendarModule} from 'primeng/fullcalendar';
-import {AccordionModule, DialogService, TabViewModule} from 'primeng';
+import {AccordionModule, DialogService, MessageModule, TabViewModule} from 'primeng';
 import {DialogModule} from 'primeng/dialog';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
-
 // Mis componentes
-import { AppEmpresaComponentComponent } from './app-empresa-component/app-empresa-component.component';
-import { AppEmpresaDosComponent } from './app-empresa-dos/app-empresa-dos.component';
-import { AppCourseComponent } from './hoja-vida/app-course/app-course.component';
-import { AppProfessionalExperienceComponent } from './hoja-vida/app-professional-experience/app-professional-experience.component';
-import { AppAcademicFormationComponent } from './hoja-vida/app-academic-formation/app-academic-formation.component';
-import { AppProfessionalReferencesComponent } from './hoja-vida/app-professional-references/app-professional-references.component';
-import { AppProfessionalComponent } from './hoja-vida/app-professional/app-professional.component';
-//import { AppDatosPersonalesComponent } from './hoja-vida/app-datos-personales/app-datos-personales.component';
-import { HojaVidaModule } from './hoja-vida/hoja-vida.module';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import { AppHojaVidaComponent } from './app.hoja-vida.component';
+import { AppCourseComponent } from './app-course/app-course.component';
+
 
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forChild(JobBoardRoutes),
+        RouterModule.forChild(HojaVidaRoutes),
         FormsModule,
         AutoCompleteModule,
         MultiSelectModule,
@@ -102,20 +96,15 @@ import { HojaVidaModule } from './hoja-vida/hoja-vida.module';
         AccordionModule,
         DialogModule,
         ConfirmDialogModule,
-        HojaVidaModule
-    ],
+        MessageModule,
+        KeyFilterModule,
+        ReactiveFormsModule
+            ],
     declarations: [
-        //AppHojaVidaComponent,
-        AppEmpresaComponentComponent,
-        AppEmpresaDosComponent,
-        //AppCourseComponent,
-        //AppProfessionalExperienceComponent,
-        //AppAcademicFormationComponent,
-        //AppProfessionalReferencesComponent,
-        //AppProfessionalComponent,
-       // AppDatosPersonalesComponent
-    ],
-    providers: [DialogService]
+        AppHojaVidaComponent,
+        AppCourseComponent
+     ],
+    providers: [DialogService, MessageService, ConfirmationService]
 })
-export class JobBoardModule {
+export class HojaVidaModule {
 }
