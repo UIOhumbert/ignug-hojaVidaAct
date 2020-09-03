@@ -10,7 +10,9 @@ export class Ability {
     description: string;
     state: State;
     constructor() {
-        //this.date = new Date();
+        this.category = new Catalogue ();
+        this.professional = new Professional ();
+
 
     }
 }

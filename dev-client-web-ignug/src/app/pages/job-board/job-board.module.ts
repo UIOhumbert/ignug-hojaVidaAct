@@ -51,6 +51,7 @@ import { AppEmpresaComponentComponent } from './app-empresa-component/app-empres
 import { AppEmpresaDosComponent } from './app-empresa-dos/app-empresa-dos.component';
 <<<<<<< HEAD
 import { AppCourseComponent } from './hoja-vida/app-course/app-course.component';
+import { AppAbilityComponent } from './hoja-vida/app-ability/app-ability.component';
 import { AppProfessionalExperienceComponent } from './hoja-vida/app-professional-experience/app-professional-experience.component';
 import { AppAcademicFormationComponent } from './hoja-vida/app-academic-formation/app-academic-formation.component';
 import { AppProfessionalReferencesComponent } from './hoja-vida/app-professional-references/app-professional-references.component';

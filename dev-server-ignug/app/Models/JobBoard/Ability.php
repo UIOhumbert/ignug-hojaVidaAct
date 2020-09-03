@@ -19,7 +19,7 @@ class Ability extends Model
         'state',
     ];
 
-    public function profsesional()
+    public function profesional()
     {
         return $this->belongsTo(Professional::class);
     }

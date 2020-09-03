@@ -14,11 +14,13 @@ export class AppCourseComponent implements OnInit {
     displayCourse: boolean; // para visualizar el modal nuevo usuario - modificiar usuario
     eventTypes: SelectItem[]; // para almacenar el catalogo de las etnias
     typeCertifications: SelectItem[]; // para almacenar el catalogo de las los cantones
+   
     selectedCourse: Course; // para guardar el usuario seleccionado o para poder editar la informacion
     courses: Array<Course>; // para almacenar el listado de todos los usuarios
     colsCourse: any[]; // para almacenar las columnas para la tabla usuarios
-    headerDialogCourse: string; // para cambiar de forma dinamica la cabecear del  modal de creacion o actualizacion de usuario
     courseForm: FormGroup;
+
+    headerDialogCourse: string; // para cambiar de forma dinamica la cabecear del  modal de creacion o actualizacion de usuario
     validationBirthdate: string;
     institution: string;
   constructor(private messageService: MessageService,
@@ -29,6 +31,7 @@ export class AppCourseComponent implements OnInit {
               private fb: FormBuilder) {
         this.selectedCourse = new Course();
         this.courses = new Array<Course>();
+
         this.colsCourse = [
             {field: 'institution', header: 'Institución'},
             {field: 'event_type', header: 'Tipo'},
