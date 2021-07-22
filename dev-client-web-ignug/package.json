@@ -39,7 +39,7 @@
         "rxjs": "6.5.4",
         "web-animations-js": "github:angular/web-animations-js#release_pr208",
         "zone.js": "0.10.2",
-        "xlsx": "^0.16.4"
+        "xlsx": "^0.17.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.901.11",
@@ -61,6 +61,6 @@
         "ts-node": "8.3.0",
         "tslint": "5.18.0",
         "typescript": "3.7.5",
-        "xlsx": "^0.16.4"
+        "xlsx": "^0.17.0"
     }
 }
